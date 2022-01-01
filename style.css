@@ -1,0 +1,48 @@
+body {
+  height: 100vw;
+  height: 100vh;
+  margin: 0;
+  -ms-overflow-style: none;
+  background: linear-gradient(to right, #16bffd, #cb3066);
+}
+
+::-webkit-scrollbar {
+  display:none;
+}
+
+.box_row {
+  position: relative;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: #1b69ce;
+    border: 5px solid #000000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+}
+
+.plus__button {
+  display: flex;
+  justify-content: center;
+}
+
+.plus_button {
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 0 0 10% 10%;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
