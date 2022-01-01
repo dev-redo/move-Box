@@ -12,7 +12,7 @@ function createItem() {
   box.textContent = 'BLUE' + box.num;
 
   box.classList.add('box');
-  box.addEventListener('mousedown', enableMove);
+  box.addEventListener('pointerdown', enableMove);
   $boxRow.appendChild(box);
 }
 
@@ -29,7 +29,7 @@ const enableMove = ({ clientX, clientY, target }) => {
   box.initialMousePos.x = clientX - box.offset.x;
   box.initialMousePos.y = clientY - box.offset.y;
 
-  document.addEventListener('mousemove', move);
+  document.addEventListener('pointermove', move);
 };
 
 const move = ({ clientX, clientY }) => {
@@ -40,7 +40,7 @@ const move = ({ clientX, clientY }) => {
 };
 
 document.addEventListener('mouseup', () => {
-  document.removeEventListener('mousemove', move);
+  document.removeEventListener('pointermove', move);
 });
 
 const knowColor = () => {
