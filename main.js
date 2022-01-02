@@ -15,6 +15,8 @@ function createItem() {
   box.classList.add('box');
   box.classList.add('color');
   box.addEventListener('pointerdown', enableMove);
+  box.addEventListener('contextmenu', evt => evt.preventDefault());
+
   $boxRow.appendChild(box);
 }
 
@@ -29,18 +31,29 @@ const enableMove = ({ clientX, clientY, target }) => {
   box.initialMousePos.y = clientY - box.offset.y;
 
   document.addEventListener('pointermove', move);
+  document.addEventListener('touchmove', move);
 };
 
 // 박스 움직임 및 위치에 따른 색상, 이름 변경
-const move = ({ clientX, clientY }) => {
+const move = ({ clientX, clientY, touches }) => {
+  if (touches) {
+    clientX = touches[0].clientX;
+    clientY = touches[0].clientY;
+  }
+
+  if (!clientX || !clientY) {
+    return;
+  }
+
   box.offset.x = clientX - box.initialMousePos.x;
   box.offset.y = clientY - box.initialMousePos.y;
   box.style.transform = `translate3d(${box.offset.x}px, ${box.offset.y}px, 0)`;
   switchColor();
 };
 
-document.addEventListener('mouseup', () => {
+document.addEventListener('pointerup', () => {
   document.removeEventListener('pointermove', move);
+  document.removeEventListener('touchmove', move);
 });
 
 // 위치에 따라 박스의 색상, 이름 변경
