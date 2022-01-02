@@ -1,8 +1,9 @@
 const $boxRow = document.querySelector('.box_row');
 const $plusButton = document.querySelector('.plus_button');
 let box = null;
-let num = 0;
+let num = 0; // 박스 num
 
+// 박스 생성
 function createItem() {
   const box = document.createElement('div');
   
@@ -12,18 +13,16 @@ function createItem() {
   box.textContent = 'BLUE' + box.num;
 
   box.classList.add('box');
+  box.classList.add('color');
   box.addEventListener('pointerdown', enableMove);
   $boxRow.appendChild(box);
-}
-
-function knowNum() {
-  return num++;
 }
 
 $plusButton.addEventListener('click', () => {
   createItem();
 });
 
+// 박스 현재 위치 계산
 const enableMove = ({ clientX, clientY, target }) => {
   box = target;
   box.initialMousePos.x = clientX - box.offset.x;
@@ -32,21 +31,24 @@ const enableMove = ({ clientX, clientY, target }) => {
   document.addEventListener('pointermove', move);
 };
 
+// 박스 움직임 및 위치에 따른 색상, 이름 변경
 const move = ({ clientX, clientY }) => {
   box.offset.x = clientX - box.initialMousePos.x;
   box.offset.y = clientY - box.initialMousePos.y;
   box.style.transform = `translate3d(${box.offset.x}px, ${box.offset.y}px, 0)`;
-  knowColor();
+  switchColor();
 };
 
 document.addEventListener('mouseup', () => {
   document.removeEventListener('pointermove', move);
 });
 
-const knowColor = () => {
+// 위치에 따라 박스의 색상, 이름 변경
+const switchColor = () => {
   if(box.getBoundingClientRect().left >= window.innerWidth / 2) {
     box.textContent = 'Purple' + box.num;
     box.style.backgroundColor = '#7F00FF';
+
   } else {
     box.textContent = 'BLUE' + box.num;
     box.style.backgroundColor = '#1b69ce';
