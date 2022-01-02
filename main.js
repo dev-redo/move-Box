@@ -58,7 +58,7 @@ document.addEventListener('pointerup', () => {
 
 // 위치에 따라 박스의 색상, 이름 변경
 const switchColor = () => {
-  if(box.getBoundingClientRect().left >= window.innerWidth / 2) {
+  if((box.getBoundingClientRect().left + box.getBoundingClientRect().right ) / 2 >= window.innerWidth / 2) {
     box.textContent = 'Purple' + box.num;
     box.style.backgroundColor = '#7F00FF';
 
