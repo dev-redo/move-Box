@@ -2,7 +2,7 @@
 name: "✔ Feature"
 about: 새로 나온 이슈를 작성하세요.
 title: ''
-labels: ''
+labels: bug, enhancement
 assignees: ''
 
 ---
