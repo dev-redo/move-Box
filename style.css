@@ -6,6 +6,7 @@
 body {
   width: 100vw;
   overflow: hidden;
+  user-select: none;
   background: linear-gradient(to right, #16bffd, #cb3066);
 }
 
